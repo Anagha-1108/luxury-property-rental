@@ -1,0 +1,748 @@
+/* ═══════════════════════════════════════════════
+   LUXURY PROPERTY RENTAL — Royal Blue Blur Theme
+   ═══════════════════════════════════════════════ */
+
+   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap');
+
+   /* ── CSS Variables ── */
+   :root {
+     --royal: #1A2B6B;
+     --royal-mid: #1E3A8A;
+     --royal-light: #2A52BE;
+     --royal-glow: rgba(30, 58, 138, 0.55);
+     --sapphire: #0C1E5B;
+     --ice: #E8F0FE;
+     --ice-soft: rgba(232, 240, 254, 0.08);
+     --ice-border: rgba(232, 240, 254, 0.15);
+     --gold: #D4AF37;
+     --gold-light: #F0CD60;
+     --gold-dim: rgba(212, 175, 55, 0.15);
+     --text: #EEF2FF;
+     --text-2: #A5B4D4;
+     --text-3: #6B7BA4;
+     --glass: rgba(15, 28, 80, 0.55);
+     --glass-hover: rgba(20, 38, 100, 0.75);
+     --blur: blur(18px);
+     --radius: 16px;
+     --shadow: 0 8px 40px rgba(0, 0, 20, 0.4);
+     --shadow-gold: 0 6px 24px rgba(212, 175, 55, 0.25);
+   }
+   
+   /* ── Reset ── */
+   *, *::before, *::after {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+   }
+   
+   /* ── Base ── */
+   body {
+     font-family: 'Outfit', sans-serif;
+     font-weight: 400;
+     background: #07102E;
+     color: var(--text);
+     min-height: 100vh;
+     position: relative;
+     overflow-x: hidden;
+   }
+   
+   /* Global animated background */
+   body::before {
+     content: '';
+     position: fixed;
+     inset: 0;
+     background:
+       radial-gradient(ellipse 70% 60% at 15% 20%, rgba(30, 58, 138, 0.55) 0%, transparent 65%),
+       radial-gradient(ellipse 50% 70% at 85% 75%, rgba(12, 30, 91, 0.7) 0%, transparent 60%),
+       radial-gradient(ellipse 40% 40% at 50% 50%, rgba(42, 82, 190, 0.18) 0%, transparent 70%);
+     pointer-events: none;
+     z-index: 0;
+   }
+   
+   body::after {
+     content: '';
+     position: fixed;
+     inset: 0;
+     background-image:
+       repeating-linear-gradient(
+         0deg,
+         transparent,
+         transparent 80px,
+         rgba(232, 240, 254, 0.015) 80px,
+         rgba(232, 240, 254, 0.015) 81px
+       ),
+       repeating-linear-gradient(
+         90deg,
+         transparent,
+         transparent 80px,
+         rgba(232, 240, 254, 0.015) 80px,
+         rgba(232, 240, 254, 0.015) 81px
+       );
+     pointer-events: none;
+     z-index: 0;
+   }
+   
+   /* Ensure all sections sit above background */
+   header, main, section, footer, .hero, .stats,
+   .search-section, .properties, .about, .reviews,
+   .contact, .form-container, .dashboard {
+     position: relative;
+     z-index: 1;
+   }
+   
+   /* ── Header ── */
+   header {
+     background: var(--glass);
+     backdrop-filter: var(--blur);
+     -webkit-backdrop-filter: var(--blur);
+     border-bottom: 1px solid var(--ice-border);
+     color: var(--text);
+     padding: 18px 60px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     position: sticky;
+     top: 0;
+     z-index: 100;
+     box-shadow: 0 2px 30px rgba(0, 0, 20, 0.3);
+   }
+   
+   header h1 {
+     font-family: 'Playfair Display', serif;
+     font-size: 26px;
+     font-weight: 700;
+     letter-spacing: -0.01em;
+     background: linear-gradient(135deg, #fff 30%, var(--gold-light));
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     background-clip: text;
+   }
+   
+   nav a {
+     color: var(--text-2);
+     text-decoration: none;
+     margin: 0 16px;
+     font-size: 15px;
+     font-weight: 500;
+     letter-spacing: 0.03em;
+     transition: color 0.25s, text-shadow 0.25s;
+   }
+   
+   nav a:hover {
+     color: var(--gold-light);
+     text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+   }
+   
+   header button {
+     padding: 11px 24px;
+     border: none;
+     background: linear-gradient(135deg, var(--gold), var(--gold-light));
+     color: #07102E;
+     font-family: 'Outfit', sans-serif;
+     font-weight: 600;
+     font-size: 14px;
+     letter-spacing: 0.05em;
+     border-radius: 100px;
+     cursor: pointer;
+     box-shadow: var(--shadow-gold);
+     transition: transform 0.2s, box-shadow 0.2s;
+   }
+   
+   header button:hover {
+     transform: translateY(-2px);
+     box-shadow: 0 10px 32px rgba(212, 175, 55, 0.4);
+   }
+   
+   /* ── Hero ── */
+   .hero {
+     height: 580px;
+     background:
+       linear-gradient(135deg, rgba(7,16,46,0.75) 0%, rgba(26,43,107,0.6) 60%, rgba(7,16,46,0.8) 100%),
+       url("images/villa.jpg");
+     background-size: cover;
+     background-position: center;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     text-align: center;
+     color: white;
+     gap: 0;
+   }
+   
+   .hero h2 {
+     font-family: 'Playfair Display', serif;
+     font-size: 64px;
+     font-weight: 700;
+     line-height: 1.1;
+     letter-spacing: -0.02em;
+     margin-bottom: 18px;
+     background: linear-gradient(180deg, #fff 40%, rgba(232, 240, 254, 0.7));
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     background-clip: text;
+     text-shadow: none;
+   }
+   
+   .hero p {
+     font-size: 20px;
+     font-weight: 300;
+     color: var(--ice);
+     opacity: 0.85;
+     margin-bottom: 32px;
+     letter-spacing: 0.02em;
+   }
+   
+   .hero-btn {
+     background: linear-gradient(135deg, var(--gold), var(--gold-light));
+     color: #07102E;
+     padding: 16px 36px;
+     text-decoration: none;
+     border-radius: 100px;
+     font-family: 'Outfit', sans-serif;
+     font-weight: 700;
+     font-size: 15px;
+     letter-spacing: 0.04em;
+     box-shadow: var(--shadow-gold);
+     transition: transform 0.25s, box-shadow 0.25s;
+     display: inline-block;
+   }
+   
+   .hero-btn:hover {
+     transform: translateY(-3px);
+     box-shadow: 0 12px 40px rgba(212, 175, 55, 0.45);
+   }
+   
+   /* ── Stats ── */
+   .stats {
+     display: flex;
+     justify-content: center;
+     gap: 80px;
+     padding: 50px 60px;
+     background: var(--glass);
+     backdrop-filter: var(--blur);
+     -webkit-backdrop-filter: var(--blur);
+     border-top: 1px solid var(--ice-border);
+     border-bottom: 1px solid var(--ice-border);
+   }
+   
+   .stat-box {
+     text-align: center;
+   }
+   
+   .stat-box h2 {
+     font-family: 'Playfair Display', serif;
+     font-size: 44px;
+     font-weight: 700;
+     background: linear-gradient(135deg, var(--gold), var(--gold-light));
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     background-clip: text;
+     margin-bottom: 6px;
+   }
+   
+   .stat-box p {
+     font-size: 14px;
+     color: var(--text-2);
+     letter-spacing: 0.06em;
+     text-transform: uppercase;
+   }
+   
+   /* ── Search ── */
+   .search-section {
+     text-align: center;
+     padding: 50px 30px 30px;
+   }
+   
+   .search-section h3 {
+     font-family: 'Playfair Display', serif;
+     font-size: 28px;
+     color: var(--text);
+     margin-bottom: 20px;
+     opacity: 0.9;
+   }
+   
+   #search {
+     width: 60%;
+     padding: 16px 24px;
+     border-radius: 100px;
+     border: 1px solid var(--ice-border);
+     background: var(--glass);
+     backdrop-filter: blur(12px);
+     -webkit-backdrop-filter: blur(12px);
+     font-family: 'Outfit', sans-serif;
+     font-size: 15px;
+     color: var(--text);
+     outline: none;
+     transition: border-color 0.25s, box-shadow 0.25s;
+   }
+   
+   #search::placeholder { color: var(--text-3); }
+   
+   #search:focus {
+     border-color: rgba(212, 175, 55, 0.5);
+     box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.08), 0 4px 24px rgba(0,0,20,0.3);
+   }
+   
+   /* ── Properties ── */
+   .properties {
+     display: flex;
+     justify-content: center;
+     gap: 28px;
+     padding: 40px 50px 60px;
+     flex-wrap: wrap;
+   }
+   
+   .card {
+     width: 300px;
+     background: var(--glass);
+     backdrop-filter: var(--blur);
+     -webkit-backdrop-filter: var(--blur);
+     border: 1px solid var(--ice-border);
+     border-radius: var(--radius);
+     overflow: hidden;
+     box-shadow: var(--shadow);
+     transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s, border-color 0.3s;
+   }
+   
+   .card:hover {
+     transform: translateY(-10px);
+     border-color: rgba(212, 175, 55, 0.35);
+     box-shadow: 0 20px 60px rgba(0, 0, 30, 0.5), 0 0 0 1px rgba(212, 175, 55, 0.15);
+   }
+   
+   .card img {
+     width: 100%;
+     height: 220px;
+     object-fit: cover;
+     display: block;
+   }
+   
+   .card h3 {
+     padding: 16px 18px 6px;
+     font-family: 'Playfair Display', serif;
+     font-size: 18px;
+     font-weight: 600;
+     color: var(--text);
+   }
+   
+   .card p {
+     padding: 4px 18px;
+     font-size: 14px;
+     color: var(--text-2);
+     line-height: 1.6;
+   }
+   
+   .card button {
+     margin: 16px 18px 18px;
+     padding: 11px 20px;
+     border: 1px solid var(--ice-border);
+     background: var(--ice-soft);
+     color: var(--text);
+     font-family: 'Outfit', sans-serif;
+     font-size: 13px;
+     font-weight: 600;
+     letter-spacing: 0.04em;
+     border-radius: 8px;
+     cursor: pointer;
+     transition: all 0.25s;
+   }
+   
+   .card button:hover {
+     background: linear-gradient(135deg, var(--gold), var(--gold-light));
+     color: #07102E;
+     border-color: transparent;
+     box-shadow: var(--shadow-gold);
+   }
+   
+   /* ── About ── */
+   .about {
+     background: var(--glass);
+     backdrop-filter: var(--blur);
+     -webkit-backdrop-filter: var(--blur);
+     border-top: 1px solid var(--ice-border);
+     border-bottom: 1px solid var(--ice-border);
+     text-align: center;
+     padding: 70px 60px;
+   }
+   
+   .about h2 {
+     font-family: 'Playfair Display', serif;
+     font-size: 40px;
+     font-weight: 700;
+     color: var(--text);
+     margin-bottom: 18px;
+     letter-spacing: -0.01em;
+   }
+   
+   .about p {
+     font-size: 16px;
+     color: var(--text-2);
+     max-width: 640px;
+     margin: 0 auto;
+     line-height: 1.8;
+   }
+   
+   /* ── Reviews ── */
+   .reviews {
+     padding: 70px 30px;
+     text-align: center;
+   }
+   
+   .reviews h2 {
+     font-family: 'Playfair Display', serif;
+     font-size: 36px;
+     color: var(--text);
+     margin-bottom: 8px;
+   }
+   
+   .reviews > p {
+     color: var(--text-2);
+     margin-bottom: 36px;
+     font-size: 15px;
+   }
+   
+   .review-box {
+     background: var(--glass);
+     backdrop-filter: blur(14px);
+     -webkit-backdrop-filter: blur(14px);
+     border: 1px solid var(--ice-border);
+     margin: 18px auto;
+     max-width: 520px;
+     padding: 28px 32px;
+     border-radius: var(--radius);
+     box-shadow: var(--shadow);
+     text-align: left;
+     transition: border-color 0.25s, transform 0.25s;
+   }
+   
+   .review-box:hover {
+     border-color: rgba(212, 175, 55, 0.3);
+     transform: translateY(-3px);
+   }
+   
+   .review-box p {
+     font-size: 15px;
+     color: var(--text-2);
+     line-height: 1.75;
+     margin-bottom: 14px;
+   }
+   
+   .review-box .reviewer {
+     font-size: 13px;
+     font-weight: 600;
+     color: var(--gold-light);
+     letter-spacing: 0.04em;
+     text-transform: uppercase;
+   }
+   
+   /* ── Contact ── */
+   .contact {
+     background: var(--glass);
+     backdrop-filter: var(--blur);
+     -webkit-backdrop-filter: var(--blur);
+     border-top: 1px solid var(--ice-border);
+     text-align: center;
+     padding: 60px;
+     color: var(--text);
+   }
+   
+   .contact h2 {
+     font-family: 'Playfair Display', serif;
+     font-size: 36px;
+     margin-bottom: 12px;
+   }
+   
+   .contact p {
+     color: var(--text-2);
+     font-size: 15px;
+     margin-bottom: 28px;
+   }
+   
+   .contact a {
+     color: var(--gold-light);
+     text-decoration: none;
+     font-weight: 500;
+     transition: opacity 0.2s;
+   }
+   .contact a:hover { opacity: 0.75; }
+   
+   .contact iframe {
+     margin-top: 28px;
+     box-shadow: 0 8px 40px rgba(0, 0, 30, 0.5);
+     border-radius: 12px;
+     border: 1px solid var(--ice-border);
+   }
+   
+   /* ── Footer ── */
+   footer {
+     background: rgba(7, 16, 46, 0.9);
+     border-top: 1px solid var(--ice-border);
+     color: var(--text-3);
+     text-align: center;
+     padding: 24px 20px;
+     font-size: 13px;
+     letter-spacing: 0.03em;
+   }
+   
+   footer span {
+     color: var(--gold);
+   }
+   
+   /* ── Form / Login ── */
+   .form-container {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     min-height: 80vh;
+     padding: 40px 20px;
+   }
+   
+   .login-form {
+     width: 420px;
+     background: var(--glass);
+     backdrop-filter: var(--blur);
+     -webkit-backdrop-filter: var(--blur);
+     border: 1px solid var(--ice-border);
+     padding: 44px 40px;
+     border-radius: 20px;
+     box-shadow: var(--shadow);
+   }
+   
+   .login-form h2 {
+     font-family: 'Playfair Display', serif;
+     font-size: 28px;
+     text-align: center;
+     color: var(--text);
+     margin-bottom: 28px;
+     letter-spacing: -0.01em;
+   }
+   
+   .login-form input,
+   .login-form select {
+     width: 100%;
+     padding: 13px 16px;
+     margin-bottom: 14px;
+     border: 1px solid var(--ice-border);
+     border-radius: 10px;
+     background: rgba(15, 28, 80, 0.5);
+     font-family: 'Outfit', sans-serif;
+     font-size: 14px;
+     color: var(--text);
+     outline: none;
+     transition: border-color 0.2s, box-shadow 0.2s;
+     appearance: none;
+   }
+   
+   .login-form input::placeholder { color: var(--text-3); }
+   
+   .login-form input:focus,
+   .login-form select:focus {
+     border-color: rgba(212, 175, 55, 0.5);
+     box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.08);
+   }
+   
+   .login-form select option {
+     background: #1A2B6B;
+     color: var(--text);
+   }
+   
+   .login-form button {
+     width: 100%;
+     padding: 14px;
+     background: linear-gradient(135deg, var(--gold), var(--gold-light));
+     border: none;
+     border-radius: 10px;
+     font-family: 'Outfit', sans-serif;
+     font-weight: 700;
+     font-size: 15px;
+     color: #07102E;
+     cursor: pointer;
+     letter-spacing: 0.04em;
+     box-shadow: var(--shadow-gold);
+     transition: transform 0.2s, box-shadow 0.2s;
+   }
+   
+   .login-form button:hover {
+     transform: translateY(-2px);
+     box-shadow: 0 10px 32px rgba(212, 175, 55, 0.4);
+   }
+   
+   .login-form p {
+     text-align: center;
+     margin-top: 18px;
+     font-size: 13px;
+     color: var(--text-3);
+   }
+   
+   .login-form p a {
+     color: var(--gold-light);
+     text-decoration: none;
+     font-weight: 500;
+     transition: opacity 0.2s;
+   }
+   .login-form p a:hover { opacity: 0.75; }
+   
+   /* ── Dashboard ── */
+   .dashboard {
+     padding: 60px 50px;
+     text-align: center;
+   }
+   
+   .dashboard h2 {
+     font-family: 'Playfair Display', serif;
+     font-size: 36px;
+     color: var(--text);
+     margin-bottom: 12px;
+     letter-spacing: -0.01em;
+   }
+   
+   .dashboard > p {
+     color: var(--text-2);
+     margin-bottom: 36px;
+     font-size: 15px;
+   }
+   
+   .dashboard-cards {
+     display: flex;
+     justify-content: center;
+     gap: 24px;
+     flex-wrap: wrap;
+     margin-bottom: 48px;
+   }
+   
+   .dashboard-card {
+     background: var(--glass);
+     backdrop-filter: blur(14px);
+     -webkit-backdrop-filter: blur(14px);
+     border: 1px solid var(--ice-border);
+     width: 220px;
+     padding: 28px 24px;
+     border-radius: var(--radius);
+     box-shadow: var(--shadow);
+     transition: transform 0.25s, border-color 0.25s;
+   }
+   
+   .dashboard-card:hover {
+     transform: translateY(-6px);
+     border-color: rgba(212, 175, 55, 0.3);
+   }
+   
+   .dashboard-card h3 {
+     font-family: 'Playfair Display', serif;
+     font-size: 38px;
+     font-weight: 700;
+     background: linear-gradient(135deg, var(--gold), var(--gold-light));
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     background-clip: text;
+     margin-bottom: 8px;
+   }
+   
+   .dashboard-card p {
+     font-size: 13px;
+     color: var(--text-2);
+     letter-spacing: 0.04em;
+     text-transform: uppercase;
+   }
+   
+   /* ── Table ── */
+   table {
+     width: 90%;
+     margin: auto;
+     border-collapse: collapse;
+     background: var(--glass);
+     backdrop-filter: blur(12px);
+     -webkit-backdrop-filter: blur(12px);
+     border-radius: var(--radius);
+     overflow: hidden;
+     border: 1px solid var(--ice-border);
+     box-shadow: var(--shadow);
+   }
+   
+   table th,
+   table td {
+     border-bottom: 1px solid var(--ice-border);
+     padding: 16px 20px;
+     font-size: 14px;
+     color: var(--text-2);
+     text-align: left;
+   }
+   
+   table tr:last-child td { border-bottom: none; }
+   
+   table th {
+     background: rgba(26, 43, 107, 0.8);
+     color: var(--gold-light);
+     font-weight: 600;
+     font-size: 12px;
+     letter-spacing: 0.1em;
+     text-transform: uppercase;
+   }
+   
+   table tr:hover td {
+     background: var(--ice-soft);
+     color: var(--text);
+   }
+   
+   /* ── Dark Mode ── */
+   .dark-mode { background: #050D1F; }
+   
+   .dark-mode .card,
+   .dark-mode .login-form,
+   .dark-mode .review-box,
+   .dark-mode .dashboard-card,
+   .dark-mode table {
+     background: rgba(8, 15, 45, 0.7);
+     color: var(--text);
+   }
+   
+   .dark-mode input,
+   .dark-mode .login-form select {
+     background: rgba(8, 15, 45, 0.8);
+     color: var(--text);
+     border-color: var(--ice-border);
+   }
+   
+   /* ── Responsive ── */
+   @media (max-width: 768px) {
+     header {
+       flex-direction: column;
+       gap: 16px;
+       padding: 18px 24px;
+     }
+   
+     header h1 { font-size: 22px; }
+   
+     nav {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       gap: 8px;
+     }
+   
+     .hero { height: auto; padding: 80px 24px; }
+   
+     .hero h2 { font-size: 40px; }
+   
+     .hero p { font-size: 17px; }
+   
+     .stats {
+       flex-direction: column;
+       gap: 36px;
+       padding: 40px 24px;
+     }
+   
+     #search { width: 92%; }
+   
+     .properties { padding: 30px 20px 50px; gap: 20px; }
+   
+     .about { padding: 50px 24px; }
+   
+     .dashboard { padding: 40px 20px; }
+   
+     table th, table td { padding: 12px 14px; }
+   
+     .login-form { width: 100%; max-width: 400px; padding: 36px 28px; }
+   }
+   
