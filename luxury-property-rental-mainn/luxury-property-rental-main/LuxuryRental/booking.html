@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking - Luxury Rental</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Luxury Rental</h1>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="booking.html">Booking</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+        
+    </nav>
+
+    <button onclick="toggleDarkMode()">Dark Mode</button>
+</header>
+
+<section class="form-container">
+
+    <form class="login-form" onsubmit="return bookPropertyForm()">
+
+        <h2>Book Your Property</h2>
+
+        <input type="text" id="customerName" placeholder="Full Name" required>
+
+        <input type="email" id="customerEmail" placeholder="Email" required>
+
+        <select id="property" required>
+            <option value="">Select Property</option>
+            <option>Luxury Villa - Goa</option>
+            <option>Premium Apartment - Bangalore</option>
+            <option>Beach Resort - Maldives</option>
+            <option>Luxury Penthouse - Mumbai</option>
+        </select>
+
+        <input type="date" id="checkin" required>
+
+        <input type="date" id="checkout" required>
+
+        <input type="number" id="guests" placeholder="Number of Guests" required>
+
+        <button type="submit">Confirm Booking</button>
+
+    </form>
+
+</section>
+
+<footer>
+    <p>© 2026 Luxury Rental Management System</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
