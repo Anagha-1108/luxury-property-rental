@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Luxury Rental Payment</h1>
+</header>
+
+<section class="form-container">
+
+    <div class="login-form">
+
+        <h2>Scan & Pay</h2>
+
+        <img
+            src="images/paymentqr.png"
+            alt="QR Code"
+            width="250">
+
+        <br><br>
+
+        <button onclick="paymentSuccess()">
+            Payment Done
+        </button>
+
+    </div>
+
+</section>
+
+<script>
+
+function paymentSuccess(){
+
+    alert("Payment Successful! Booking Confirmed.");
+
+    window.location.href = "index.html";
+}
+
+</script>
+
+</body>
+</html>

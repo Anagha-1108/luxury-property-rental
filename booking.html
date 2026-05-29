@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking - Luxury Rental</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+
+    <h1>Luxury Rental</h1>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="booking.html">Booking</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+    </nav>
+
+    <button onclick="toggleDarkMode()">
+        Dark Mode
+    </button>
+
+</header>
+
+<section class="form-container">
+
+    <div class="login-form">
+
+        <h2>Book Your Property</h2>
+
+        <input
+            type="text"
+            id="customerName"
+            placeholder="Full Name"
+            required>
+
+        <input
+            type="email"
+            id="customerEmail"
+            placeholder="Email"
+            required>
+
+        <input
+            type="text"
+            id="property"
+            readonly
+            required>
+
+        <input
+            type="date"
+            id="checkin"
+            required>
+
+        <input
+            type="date"
+            id="checkout"
+            required>
+
+        <input
+            type="number"
+            id="guests"
+            placeholder="Number of Guests"
+            min="1"
+            required>
+
+        <button
+            type="button"
+            id="bookBtn">
+
+            Confirm Booking
+
+        </button>
+
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 Luxury Rental Management System</p>
+</footer>
+
+<script src="script.js"></script>
+
+<script>
+
+const params =
+new URLSearchParams(window.location.search);
+
+const property =
+params.get("property");
+
+document.getElementById("property").value =
+property;
+
+document.getElementById("bookBtn").onclick =
+function() {
+
+    bookPropertyForm();
+};
+
+</script>
+
+</body>
+</html>

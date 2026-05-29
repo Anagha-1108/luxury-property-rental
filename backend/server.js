@@ -1,4 +1,3 @@
-
 const db = require("./db");
 const authRoutes = require("./routes/authRoutes");
 
@@ -8,7 +7,11 @@ const cors = require("cors");
 const app = express();
 
 app.use(cors());
+
 app.use(express.json());
+
+app.use(express.urlencoded({ extended: true }));
+
 app.use(authRoutes);
 
 app.get("/", (req, res) => {

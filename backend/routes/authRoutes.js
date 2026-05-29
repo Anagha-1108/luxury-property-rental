@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db");
 
-router.post("/register", (req, res) => {
+router.post("/register", (req, res) => { 
+
+    console.log(req.body);
 
     const { name, email, password } = req.body;
 
@@ -17,16 +19,18 @@ router.post("/register", (req, res) => {
         (err, result) => {
 
             if(err){
-                console.log(err);
+
+                console.log("MYSQL ERROR:", err);
                 res.send("Registration Failed");
-            } else {
+            }
+            else {
                 res.send("User Registered Successfully");
             }
 
         }
     );
 
-}); 
+});
 
 router.get("/properties", (req, res) => {
 
@@ -82,8 +86,6 @@ router.put("/update-property/:id", (req, res) => {
     );
 
 });
-
-module.exports = router; 
 
 router.delete("/delete-property/:id", (req, res) => {
 
@@ -195,3 +197,53 @@ router.post("/login", (req, res) => {
     );
 
 });
+
+router.post("/booking", (req, res) => {
+
+    const {
+        customerName,
+        customerEmail,
+        property,
+        checkin,
+        checkout,
+        guests
+    } = req.body;
+
+    const sql = `
+        INSERT INTO bookings
+        (
+            customer_name,
+            customer_email,
+            property_name,
+            checkin_date,
+            checkout_date,
+            guests
+        )
+        VALUES (?, ?, ?, ?, ?, ?)
+    `;
+
+    db.query(
+        sql,
+        [
+            customerName,
+            customerEmail,
+            property,
+            checkin,
+            checkout,
+            guests
+        ],
+        (err, result) => {
+
+            if(err){
+                console.log(err);
+                res.send("Booking Failed");
+            } else {
+                res.send("Booking Successful");
+            }
+
+        }
+    );
+
+});
+
+module.exports = router;
