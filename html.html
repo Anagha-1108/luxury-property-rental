@@ -31,14 +31,16 @@
     }
     
     body {
-      min-height: 100vh;
-      background: var(--bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Instrument Sans', sans-serif;
-      overflow: hidden;
-    }
+  min-height: 100vh;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Instrument Sans', sans-serif;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+}
     
     body::before {
       content: '';
@@ -49,6 +51,14 @@
         radial-gradient(ellipse 50% 60% at 80% 70%, rgba(232,197,71,0.04) 0%, transparent 70%);
       pointer-events: none;
     }
+
+
+    .login-form { 
+  width: 100%; 
+  max-width: 400px; 
+  padding: 36px 28px;
+}
+
     
     /* ── Screens ── */
     .screen {
@@ -67,16 +77,27 @@
     
     /* ── Card ── */
     .card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
+  background: rgba(12, 18, 45, 0.55);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 28px;
+
   padding: 3rem;
-  padding-left: 6rem;
+  padding-bottom: 5rem;
+
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+
   width: 100%;
   max-width: 900px;
-  min-height: 520px;
+
+  min-height: auto;
+
+  box-shadow:
+    0 10px 40px rgba(0,0,0,0.45),
+    inset 0 1px 1px rgba(255,255,255,0.08);
 }
     
 .card::before {
@@ -136,6 +157,79 @@
 
   margin-bottom: 1rem;
 }
+
+ 
+.table-section {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 16px;
+}
+
+table {
+  width: 100%;
+  min-width: 1100px;
+  border-collapse: collapse;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--ice-border);
+  box-shadow: var(--shadow);
+  white-space: nowrap;
+}
+
+table th,
+table td {
+  padding: 16px 20px;
+  font-size: 14px;
+  color: var(--text-2);
+  text-align: left;
+  border-bottom: 1px solid var(--ice-border);
+  white-space: nowrap;
+}
+
+table tr:last-child td {
+  border-bottom: none;
+}
+
+table th {
+  background: rgba(26, 43, 107, 0.8);
+  color: var(--gold-light);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+tbody tr {
+  transition: 0.2s ease;
+}
+
+tbody tr:hover td {
+  background: rgba(255,255,255,0.03);
+  color: var(--text);
+}
+
+/* Smooth scrollbar */
+.table-section::-webkit-scrollbar {
+  height: 8px;
+}
+
+.table-section::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.05);
+  border-radius: 20px;
+}
+
+.table-section::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 20px;
+}
+
+.table-section::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.35);
+}
+
     
     .subtitle {
   font-size: 18px;
@@ -1293,9 +1387,295 @@
   width: 100%; 
   max-width: 400px; 
   padding: 36px 28px; 
+
+
+  .screen {
+  display: none;
+  width: 100%;
+  max-width: 850px;
+
+  padding: 3rem 1.5rem;
+
+  animation: fadeUp 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+@media (max-height: 850px) {
+
+body {
+  align-items: flex-start;
+}
+
+.card {
+  margin: 2rem 0;
+}
+}
+
+
 }
 
 }
+
+
+
+
+/* ── ADMIN PANEL ── */
+
+.admin-panel {
+  max-width: 1200px;
+}
+
+.admin-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 1.5rem;
+  backdrop-filter: blur(18px);
+}
+
+.stat-card h3 {
+  font-size: 13px;
+  color: var(--text-2);
+  margin-bottom: 1rem;
+}
+
+.stat-card h2 {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.stat-card span {
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.stat-card.cancel {
+  border-color: rgba(247,111,111,0.2);
+}
+
+.stat-card.revenue {
+  border-color: rgba(95,214,135,0.2);
+}
+
+.stat-card.users {
+  border-color: rgba(79,142,247,0.2);
+}
+
+.table-section {
+  margin-top: 1rem;
+}
+
+.section-head {
+  margin-bottom: 1rem;
+}
+
+.section-head h3 {
+  color: white;
+  font-size: 1.1rem;
+}
+
+table {
+  width: 100%;
+}
+
+tbody tr {
+  transition: 0.2s ease;
+}
+
+tbody tr:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+@media (max-width: 950px) {
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+@media (max-width: 650px) {
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+}
+
+
+/* ================= FEEDBACK SECTION ================= */
+
+.feedback-section {
+    width: 100%;
+    margin-top: 40px;
+    background: rgba(14, 22, 63, 0.95);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+.feedback-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.feedback-header h2 {
+    color: white;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.feedback-filter {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.feedback-filter input {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: #111b4d;
+    color: white;
+    outline: none;
+}
+
+.feedback-filter button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 10px;
+    background: #3b82f6;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.feedback-filter button:hover {
+    background: #2563eb;
+}
+
+.feedback-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.feedback-table thead {
+    background: #1d2c73;
+}
+
+.feedback-table th {
+    color: #ffd54a;
+    text-align: left;
+    padding: 18px;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.feedback-table td {
+    padding: 18px;
+    color: #d6dcff;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.feedback-table tbody tr {
+    background: #0f1a56;
+    transition: 0.3s;
+}
+
+.feedback-table tbody tr:hover {
+    background: #16236e;
+}
+
+.stars {
+    color: #ffd54a;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+
+/* FIX FEEDBACK OVERFLOW */
+
+.feedback-section {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    box-sizing: border-box;
+}
+
+.feedback-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.feedback-table th,
+.feedback-table td {
+    padding: 18px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* COLUMN WIDTHS */
+
+.feedback-table th:nth-child(1),
+.feedback-table td:nth-child(1) {
+    width: 18%;
+}
+
+.feedback-table th:nth-child(2),
+.feedback-table td:nth-child(2) {
+    width: 20%;
+}
+
+.feedback-table th:nth-child(3),
+.feedback-table td:nth-child(3) {
+    width: 15%;
+}
+
+.feedback-table th:nth-child(4),
+.feedback-table td:nth-child(4) {
+    width: 35%;
+}
+
+.feedback-table th:nth-child(5),
+.feedback-table td:nth-child(5) {
+    width: 12%;
+}
+
+  
+  
+
 
 
     </style>
@@ -1478,7 +1858,9 @@
       <p class="welcome-card-value" style="color:var(--admin);">● Super Admin</p>
     </div>
 
-    <button class="btn-primary btn-blue" style="margin-top:1.25rem;" onclick="alert('Opening admin dashboard…')">Open Admin Dashboard →</button>
+    <button class="btn-primary btn-blue" style="margin-top:1.25rem;" onclick="openAdminDashboard()">
+      Open Admin Dashboard →
+    </button>
     <button class="btn-outline" onclick="logout()">Sign Out</button>
   </div>
 </div>
@@ -1586,6 +1968,355 @@ function logout() {
    .forEach(id => { const el = document.getElementById(id); if(el) el.value = ''; });
   go('screen-home');
 }
+
+
+
+
+function openAdminDashboard() {
+
+const usersTable = document.getElementById('users-table');
+
+usersTable.innerHTML = '';
+
+Object.keys(users).forEach(email => {
+
+  const user = users[email];
+
+  usersTable.innerHTML += `
+    <tr>
+      <td>${user.firstName} ${user.lastName}</td>
+      <td>${email}</td>
+      <td style="color:#5FD687;">Active</td>
+      <td>2026</td>
+    </tr>
+  `;
+
+});
+
+document.getElementById('user-count').textContent =
+  Object.keys(users).length;
+
+go('screen-admin-panel');
+}
+
+
+function filterFeedback() {
+
+const from = document.getElementById('fromDate').value;
+const to = document.getElementById('toDate').value;
+
+const rows = document.querySelectorAll('#feedbackTable tr');
+
+rows.forEach(row => {
+
+  const rowDate = row.getAttribute('data-date');
+
+  if (
+    (!from || rowDate >= from) &&
+    (!to || rowDate <= to)
+  ) {
+    row.style.display = '';
+  } else {
+    row.style.display = 'none';
+  }
+
+});
+}
+
+// ================= SAMPLE FEEDBACK DATA =================
+
+const feedbacks = [
+    {
+        user: "Rahul Sharma",
+        venue: "Luxury Villa",
+        rating: 5,
+        feedback: "Amazing stay and premium service.",
+        date: "2026-05-12"
+    },
+
+    {
+        user: "Priya Nair",
+        venue: "Ocean Resort",
+        rating: 4,
+        feedback: "Beautiful location but slow room service.",
+        date: "2026-05-10"
+    },
+
+    {
+        user: "Arjun Mehta",
+        venue: "Penthouse Suite",
+        rating: 5,
+        feedback: "Excellent ambience and hospitality.",
+        date: "2026-05-08"
+    }
+];
+
+// ================= DISPLAY FEEDBACK =================
+
+function displayFeedback(data) {
+
+    const tableBody = document.getElementById("feedbackTableBody");
+
+    tableBody.innerHTML = "";
+
+    data.forEach(item => {
+
+        let stars = "";
+
+        for(let i = 0; i < item.rating; i++) {
+            stars += "⭐";
+        }
+
+        const row = `
+            <tr>
+                <td>${item.user}</td>
+                <td>${item.venue}</td>
+                <td class="stars">${stars}</td>
+                <td>${item.feedback}</td>
+                <td>${formatDate(item.date)}</td>
+            </tr>
+        `;
+
+        tableBody.innerHTML += row;
+    });
+}
+
+// ================= FORMAT DATE =================
+
+function formatDate(dateString) {
+
+    const options = {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric'
+    };
+
+    return new Date(dateString).toLocaleDateString('en-GB', options);
+}
+
+// ================= FILTER FEEDBACK =================
+
+function filterFeedback() {
+
+    const fromDate =
+        document.getElementById("fromDate").value;
+
+    const toDate =
+        document.getElementById("toDate").value;
+
+    let filteredData = feedbacks;
+
+    if(fromDate && toDate) {
+
+        filteredData = feedbacks.filter(item => {
+
+            return item.date >= fromDate &&
+                   item.date <= toDate;
+        });
+    }
+
+    displayFeedback(filteredData);
+}
+
+// ================= INITIAL LOAD =================
+
+displayFeedback(feedbacks);
+
+
+
+
 </script>
+
+<!-- ══ SCREEN 8: FULL ADMIN DASHBOARD ══ -->
+<div class="screen" id="screen-admin-panel">
+  <div class="card admin-panel">
+
+    <div class="admin-topbar">
+      <div>
+        <h1>Admin Dashboard</h1>
+        <p class="subtitle">Monitor bookings, revenue, and platform activity.</p>
+      </div>
+
+      <button class="btn-outline" onclick="logout()">
+        Sign Out
+      </button>
+    </div>
+
+
+
+
+    
+    <!-- KPI CARDS -->
+    <div class="stats-grid">
+
+      <div class="stat-card">
+        <h3>Total Bookings</h3>
+        <h2 id="booking-count">248</h2>
+        <span>+12% this month</span>
+      </div>
+
+      <div class="stat-card cancel">
+        <h3>Cancellations</h3>
+        <h2 id="cancel-count">17</h2>
+        <span>4% cancellation rate</span>
+      </div>
+
+      <div class="stat-card revenue">
+        <h3>Total Revenue</h3>
+        <h2 id="revenue-count">₹14,80,000</h2>
+        <span>Updated live</span>
+      </div>
+
+      <div class="stat-card users">
+        <h3>Total Users</h3>
+        <h2 id="user-count">93</h2>
+        <span>+8 new users</span>
+      </div>
+
+    </div>
+
+   
+
+
+
+    <!-- BOOKINGS TABLE -->
+<div class="table-section">
+
+  <div class="section-head">
+    <h3>Recent Bookings</h3>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Venue</th>
+        <th>Location</th>
+        <th>Check In</th>
+        <th>Check Out</th>
+        <th>Guests</th>
+        <th>Status</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+
+    <tbody id="booking-table">
+
+      <tr>
+        <td>Rahul Sharma</td>
+        <td>Luxury Villa</td>
+        <td>Goa</td>
+        <td>12 May 2026</td>
+        <td>16 May 2026</td>
+        <td>4</td>
+        <td style="color:#5FD687;">Confirmed</td>
+        <td>₹45,000</td>
+      </tr>
+
+      <tr>
+        <td>Priya Nair</td>
+        <td>Ocean Resort</td>
+        <td>Maldives</td>
+        <td>10 May 2026</td>
+        <td>14 May 2026</td>
+        <td>2</td>
+        <td style="color:#F76F6F;">Cancelled</td>
+        <td>₹18,000</td>
+      </tr>
+
+      <tr>
+        <td>Arjun Mehta</td>
+        <td>Penthouse Suite</td>
+        <td>Mumbai</td>
+        <td>08 May 2026</td>
+        <td>11 May 2026</td>
+        <td>5</td>
+        <td style="color:#5FD687;">Confirmed</td>
+        <td>₹62,000</td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+        
+         
+
+    <!-- USER TABLE -->
+    <div class="table-section" style="margin-top:2rem;">
+
+      <div class="section-head">
+        <h3>Registered Users</h3>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Joined</th>
+          </tr>
+        </thead>
+
+        <tbody id="users-table">
+
+        </tbody>
+      </table>
+
+    </div>
+
+<!-- ================= FEEDBACK SECTION ================= -->
+
+<div class="feedback-section">
+
+  <div class="feedback-header">
+      <h2>User Feedback</h2>
+
+      <div class="feedback-filter">
+          <input type="date" id="fromDate">
+          <input type="date" id="toDate">
+
+          <button onclick="filterFeedback()">
+              Filter
+          </button>
+      </div>
+  </div>
+
+  <table class="feedback-table">
+      <thead>
+          <tr>
+              <th>User</th>
+              <th>Venue</th>
+              <th>Rating</th>
+              <th>Feedback</th>
+              <th>Date</th>
+          </tr>
+      </thead>
+
+      <tbody id="feedbackTableBody">
+
+          <!-- Feedback rows will appear here -->
+
+      </tbody>
+  </table>
+
+</div>
+
+
+
+  </div>
+</div>
+
+
+
+      
+     
+        
+   
+
+
+
+
 </body>
 </html>
