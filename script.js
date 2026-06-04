@@ -1,4 +1,3 @@
-
 async function registerUser() {
 
     let name =
@@ -6,6 +5,9 @@ async function registerUser() {
 
     let email =
     document.getElementById("email").value;
+
+    let phone =
+    document.getElementById("phone").value;
 
     let password =
     document.getElementById("password").value;
@@ -32,6 +34,7 @@ async function registerUser() {
             body: JSON.stringify({
                 name: name,
                 email: email,
+                phone: phone,
                 password: password
             })
         }
@@ -51,6 +54,9 @@ async function bookPropertyForm() {
 
     let customerEmail =
     document.getElementById("customerEmail").value;
+
+    let phone =
+    document.getElementById("phone").value;
 
     let property =
     document.getElementById("property").value;
@@ -76,6 +82,7 @@ async function bookPropertyForm() {
             body: JSON.stringify({
                 customerName,
                 customerEmail,
+                phone,
                 property,
                 checkin,
                 checkout,
@@ -88,7 +95,9 @@ async function bookPropertyForm() {
 
     alert(data);
 
+    if(data === "Booking Successful"){
     window.location.href = "payment.html";
+    }
 
     return false;
 }

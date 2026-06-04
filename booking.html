@@ -42,13 +42,21 @@
             type="email"
             id="customerEmail"
             placeholder="Email"
-            required>
+            required> 
 
         <input
-            type="text"
-            id="property"
-            readonly
+            type="tel"
+            id="phone"
+            placeholder="Phone Number"
             required>
+
+        <select id="property" required>
+        <option value="">Select Property</option>
+        <option value="Luxury Villa">Luxury Villa</option>
+        <option value="Premium Apartment">Premium Apartment</option>
+        <option value="Beach Resort">Beach Resort</option>
+        <option value="Luxury Penthouse">Luxury Penthouse</option>
+        </select>
 
         <input
             type="date"
@@ -93,8 +101,10 @@ new URLSearchParams(window.location.search);
 const property =
 params.get("property");
 
-document.getElementById("property").value =
-property;
+if(property){
+    document.getElementById("property").value = property;
+}
+
 
 document.getElementById("bookBtn").onclick =
 function() {

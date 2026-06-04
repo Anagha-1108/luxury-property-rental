@@ -2,33 +2,48 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db");
 
-router.post("/register", (req, res) => { 
+router.post("/register", (req, res) => {
 
     console.log(req.body);
 
-    const { name, email, password } = req.body;
+    const { name, email,phone, password } = req.body;
 
-    const sql = `
-        INSERT INTO users(name, email, password, role)
-        VALUES (?, ?, ?, ?)
-    `;
+    const checkSql =
+    "SELECT * FROM users WHERE email = ?";
 
-    db.query(
-        sql,
-        [name, email, password, "user"],
-        (err, result) => {
+    db.query(checkSql, [email], (err, result) => {
 
-            if(err){
-
-                console.log("MYSQL ERROR:", err);
-                res.send("Registration Failed");
-            }
-            else {
-                res.send("User Registered Successfully");
-            }
-
+        if(err){
+            console.log(err);
+            return res.send("Registration Failed");
         }
-    );
+
+        if(result.length > 0){
+            return res.send("User Already Registered");
+        }
+
+        const insertSql = `
+            INSERT INTO users(name, email,phone, password, role)
+            VALUES (?, ?, ?, ?, ?)
+        `;
+
+        db.query(
+            insertSql,
+            [name, email, phone, password, "user"],
+            (err, result) => {
+
+                if(err){
+                    console.log("MYSQL ERROR:",err);
+                    res.send("Registration Failed");
+                }
+                else{
+                    res.send("User Registered Successfully");
+                }
+
+            }
+        );
+
+    });
 
 });
 
@@ -203,43 +218,78 @@ router.post("/booking", (req, res) => {
     const {
         customerName,
         customerEmail,
+        phone,
         property,
         checkin,
         checkout,
         guests
     } = req.body;
 
-    const sql = `
-        INSERT INTO bookings
-        (
-            customer_name,
-            customer_email,
-            property_name,
-            checkin_date,
-            checkout_date,
-            guests
-        )
-        VALUES (?, ?, ?, ?, ?, ?)
+    const checkBookingSql = `
+        SELECT *
+        FROM bookings
+        WHERE customer_email = ?
+        AND checkin_date <= ?
+        AND checkout_date >= ?
     `;
 
     db.query(
-        sql,
+        checkBookingSql,
         [
-            customerName,
             customerEmail,
-            property,
-            checkin,
             checkout,
-            guests
+            checkin
         ],
         (err, result) => {
 
             if(err){
                 console.log(err);
-                res.send("Booking Failed");
-            } else {
-                res.send("Booking Successful");
+                return res.send("Booking Failed");
             }
+
+            if(result.length > 0){
+                return res.send(
+                    "You already have a booking during these dates"
+                );
+            }
+
+            const sql = `
+                INSERT INTO bookings
+                (
+                    customer_name,
+                    customer_email,
+                    phone,
+                    property_name,
+                    checkin_date,
+                    checkout_date,
+                    guests
+                )
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+            `;
+
+            db.query(
+                sql,
+                [
+                    customerName,
+                    customerEmail,
+                    phone,
+                    property,
+                    checkin,
+                    checkout,
+                    guests
+                ],
+                (err, result) => {
+
+                    if(err){
+                        console.log(err);
+                        res.send("Booking Failed");
+                    }
+                    else{
+                        res.send("Booking Successful");
+                    }
+
+                }
+            );
 
         }
     );
