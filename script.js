@@ -91,15 +91,28 @@ async function bookPropertyForm() {
         }
     );
 
-    const data = await response.text();
+   const data = await response.json();
 
-    alert(data);
+   alert(data.message);
 
-    if(data === "Booking Successful"){
-    window.location.href = "payment.html";
+    if(data.message === "Login Successful"){
+
+    if(data.role === "admin"){
+
+        window.location.href =
+        "admin-dashboard.html";
+
+    }
+    else{
+
+        window.location.href =
+        "index.html";
+
     }
 
-    return false;
+}
+
+return false;
 }
 
 async function loginUser() {
@@ -133,9 +146,26 @@ async function loginUser() {
         }
     );
 
-    const data = await response.text();
+    const data = await response.json();
 
-    alert(data);
+    alert(data.message);
+
+    if(data.message === "Login Successful"){
+
+        if(data.role === "admin"){
+
+            window.location.href =
+            "admin-dashboard.html";
+
+        }
+        else{
+
+            window.location.href =
+            "index.html";
+
+        }
+
+    }
 
     return false;
 }

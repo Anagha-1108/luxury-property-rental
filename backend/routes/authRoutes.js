@@ -201,12 +201,21 @@ router.post("/login", (req, res) => {
             }
 
             else if(result.length > 0){
-                res.send("Login Successful");
-            }
+
+            res.json({
+            message: "Login Successful",
+            role: result[0].role
+            });
+
+        }
 
             else{
-                res.send("Invalid Email or Password");
-            }
+
+            res.json({
+            message: "Invalid Email or Password"
+            });
+
+        }
 
         }
     );
@@ -293,6 +302,52 @@ router.post("/booking", (req, res) => {
 
         }
     );
+
+});
+
+router.get("/all-users", (req, res) => {
+
+    const sql = `
+        SELECT name, email, phone
+        FROM users
+    `;
+
+    db.query(sql, (err, result) => {
+
+        if(err){
+            console.log(err);
+            return res.send("Failed");
+        }
+
+        res.json(result);
+
+    });
+
+});
+
+router.get("/all-bookings", (req, res) => {
+
+    const sql = `
+        SELECT
+        customer_name,
+        customer_email,
+        property_name,
+        checkin_date,
+        checkout_date,
+        guests
+        FROM bookings
+    `;
+
+    db.query(sql, (err, result) => {
+
+        if(err){
+            console.log(err);
+            return res.send("Failed");
+        }
+
+        res.json(result);
+
+    });
 
 });
 

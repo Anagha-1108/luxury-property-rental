@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Luxury Rental</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Luxury Rental</h1>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="booking.html">Booking</a>
+        <a href="login.html">User Login</a>
+        <a href="register.html">Register</a>
+    </nav>
+
+    <button onclick="toggleDarkMode()">Dark Mode</button>
+</header>
+
+<section class="form-container">
+
+    <form class="login-form" onsubmit="return loginUser()">
+
+        <h2>Admin Login</h2>
+
+        <input
+            type="email"
+            id="loginEmail"
+            placeholder="Admin Email"
+            required>
+
+        <input
+            type="password"
+            id="loginPassword"
+            placeholder="Admin Password"
+            required>
+
+        <button type="submit">Login</button>
+
+    </form>
+
+</section>
+
+<footer>
+    <p>© 2026 Luxury Rental Management System</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
