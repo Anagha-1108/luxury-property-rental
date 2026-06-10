@@ -91,24 +91,13 @@ async function bookPropertyForm() {
         }
     );
 
-   const data = await response.json();
+   const data = await response.text();
 
-   alert(data.message);
+alert(data);
 
-    if(data.message === "Login Successful"){
+if(data === "Booking Successful"){
 
-    if(data.role === "admin"){
-
-        window.location.href =
-        "admin-dashboard.html";
-
-    }
-    else{
-
-        window.location.href =
-        "index.html";
-
-    }
+    window.location.href = "payment.html";
 
 }
 
@@ -199,4 +188,107 @@ function searchProperties() {
         }
 
     });
+}
+
+
+async function adminLogin(event) {
+
+    event.preventDefault();
+
+    let email =
+    document.getElementById("loginEmail").value;
+
+    let password =
+    document.getElementById("loginPassword").value;
+
+    const response = await fetch(
+        "http://localhost:5000/admin-login",
+        {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        }
+    );
+
+    const data = await response.json();
+
+    alert(data.message);
+
+    if(data.message === "Admin Login Successful"){
+
+        localStorage.setItem(
+            "adminLoggedIn",
+            "true"
+        );
+
+        window.location.href =
+        "admin-dashboard.html";
+    }
+
+    return false;
+}
+
+async function adminRegister(event){
+
+    event.preventDefault();
+
+    let email =
+    document.getElementById("adminEmail").value;
+
+    let password =
+    document.getElementById("adminPassword").value;
+
+    let confirmPassword =
+    document.getElementById("confirmAdminPassword").value;
+
+    if(password !== confirmPassword){
+
+        alert("Passwords do not match");
+
+        return false;
+    }
+
+    const response = await fetch(
+    "http://localhost:5000/admin-register",
+    {
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+            email,
+            password
+        })
+    });
+
+    const data = await response.json();
+
+    alert(data.message);
+
+    if(
+    data.message === "Admin Registered Successfully"
+    ){
+
+        window.location.href =
+        "admin-login.html";
+    }
+
+    if(
+    data.message === "Admin Already Registered"
+    ){
+
+        window.location.href =
+        "admin-login.html";
+    }
+
+    return false;
 }

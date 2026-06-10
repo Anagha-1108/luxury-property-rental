@@ -17,19 +17,14 @@
 }
 
 body{
-
     height:100vh;
 
     background:
-    linear-gradient(
-        rgba(0,0,0,0.65),
-        rgba(0,0,0,0.65)
-    ),
+    linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
     url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1600&q=80');
 
     background-size:cover;
     background-position:center;
-    background-repeat:no-repeat;
 
     display:flex;
     justify-content:center;
@@ -40,37 +35,37 @@ body{
 
 .welcome-container{
 
-    width:520px;
+    width:900px;
     max-width:90%;
 
-    padding:40px;
+    padding:60px;
 
     text-align:center;
 
-    background:rgba(20,20,20,0.35);
+    background:rgba(0,0,0,0.35);
 
-    backdrop-filter:blur(14px);
+    backdrop-filter:blur(18px);
 
-    border:1px solid rgba(212,175,55,0.25);
+    border:1px solid rgba(255,215,0,0.3);
 
     border-radius:25px;
 
     box-shadow:
-    0 10px 40px rgba(0,0,0,0.5);
+    0 15px 40px rgba(0,0,0,0.6);
 }
 
 .logo{
 
     font-family:'Cinzel',serif;
 
-    font-size:50px;
+    font-size:60px;
 
-    color:#D4AF37;
+    color:#FFD700;
 
-    letter-spacing:3px;
+    letter-spacing:4px;
 
     text-shadow:
-    0 0 15px rgba(212,175,55,0.5);
+    0 0 20px rgba(255,215,0,0.6);
 
     margin-bottom:10px;
 }
@@ -79,7 +74,7 @@ body{
 
     font-size:40px;
 
-    color:#D4AF37;
+    color:#FFD700;
 
     margin-bottom:20px;
 }
@@ -88,88 +83,72 @@ body{
 
     color:white;
 
-    font-size:22px;
+    font-size:24px;
 
-    font-weight:300;
-
-    margin-bottom:30px;
+    margin-bottom:40px;
 }
 
-.user-btn{
+.button-container{
 
-    width:100%;
+    display:flex;
 
-    padding:18px;
+    justify-content:center;
 
-    margin:10px 0;
+    gap:40px;
 
-    border:none;
-
-    border-radius:15px;
-
-    background:#6D071A;
-
-    color:white;
-
-    font-size:20px;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:0.3s;
+    margin-top:30px;
 }
 
-.user-btn:hover{
-
-    transform:translateY(-3px);
-
-    box-shadow:
-    0 0 20px rgba(109,7,26,0.8);
-}
-
+.user-btn,
 .admin-btn{
 
-    width:100%;
+    width:300px;
 
-    padding:18px;
-
-    margin:10px 0;
+    height:90px;
 
     border:none;
 
-    border-radius:15px;
+    border-radius:12px;
 
-    background:#D4AF37;
+    background:
+    linear-gradient(
+    135deg,
+    #FFF3B0,
+    #FFD700,
+    #D4AF37,
+    #B8860B
+    );
 
-    color:black;
+    color:#111;
 
-    font-size:20px;
+    font-size:28px;
 
-    font-weight:600;
+    font-weight:bold;
 
     cursor:pointer;
 
-    transition:0.3s;
-}
-
-.admin-btn:hover{
-
-    transform:translateY(-3px);
+    transition:0.4s;
 
     box-shadow:
-    0 0 20px rgba(212,175,55,0.8);
+    0 10px 30px rgba(255,215,0,0.4);
+}
+
+.user-btn:hover,
+.admin-btn:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+    0 15px 40px rgba(255,215,0,0.8);
 }
 
 .footer-text{
 
-    margin-top:25px;
+    margin-top:35px;
 
-    color:#D4AF37;
+    color:#FFD700;
 
-    font-size:16px;
-
-    line-height:1.8;
+    font-size:18px;
 }
 
 </style>
@@ -179,35 +158,33 @@ body{
 
 <div class="welcome-container">
 
-    <h1 class="logo">
-        LUXURY RENTAL
-    </h1>
+<h1 class="logo">LUXURY RENTAL</h1>
 
-    <div class="star">✦</div>
+<div class="star">✦</div>
 
-    <p class="subtitle">
-        ✨ Where Luxury Meets Comfort
-    </p>
+<p class="subtitle">
+Luxury Villas • Premium Apartments • Royal Resorts
+</p>
 
-    <button
-        class="user-btn"
-        onclick="window.location.href='index.html'">
+<div class="button-container">
 
-        User View
+<button
+class="user-btn"
+onclick="window.location.href='index.html'">
+USER
+</button>
 
-    </button>
+<button
+class="admin-btn"
+onclick="window.location.href='admin-home.html'">
+ADMIN
+</button>
 
-    <button
-        class="admin-btn"
-        onclick="window.location.href='admin-login.html'">
+</div>
 
-        Admin View
-
-    </button>
-
-    <p class="footer-text">
-        Luxury Villas • Apartments • Penthouses • Resorts
-    </p>
+<p class="footer-text">
+✨ Where Luxury Meets Comfort ✨
+</p>
 
 </div>
 

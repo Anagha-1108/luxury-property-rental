@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Register</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.bottom-link{
+    text-align:center;
+    margin-top:15px;
+}
+
+.bottom-link a{
+    color:#D4AF37;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.bottom-link a:hover{
+    text-decoration:underline;
+}
+
+</style>
+
+</head>
+<body>
+
+<header>
+
+<h1>Luxury Rental</h1>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="login.html">User Login</a>
+<a href="admin-login.html">Admin Login</a>
+</nav>
+
+</header>
+
+<section class="form-container">
+
+<form class="login-form" onsubmit="return adminRegister(event)">
+
+<h2>Admin Register</h2>
+
+<input
+type="email"
+id="adminEmail"
+placeholder="name@luxuryrental.com"
+required>
+
+<input
+type="password"
+id="adminPassword"
+placeholder="Password"
+required>
+
+<input
+type="password"
+id="confirmAdminPassword"
+placeholder="Confirm Password"
+required>
+
+<button type="submit">
+Register
+</button>
+
+<div class="bottom-link">
+
+Already Registered?
+
+<a href="admin-login.html">
+
+Login Here
+
+</a>
+
+</div>
+
+</form>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>

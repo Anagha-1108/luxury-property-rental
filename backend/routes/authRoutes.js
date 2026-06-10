@@ -22,6 +22,14 @@ router.post("/register", (req, res) => {
             return res.send("User Already Registered");
         }
 
+        if(email.endsWith("@luxuryrentals.com")){
+
+    return res.send(
+        "This email is reserved for admins"
+    );
+
+}
+
         const insertSql = `
             INSERT INTO users(name, email,phone, password, role)
             VALUES (?, ?, ?, ?, ?)
@@ -310,6 +318,7 @@ router.get("/all-users", (req, res) => {
     const sql = `
         SELECT name, email, phone
         FROM users
+        WHERE role='user'
     `;
 
     db.query(sql, (err, result) => {
@@ -346,6 +355,107 @@ router.get("/all-bookings", (req, res) => {
         }
 
         res.json(result);
+
+    });
+
+});
+
+
+router.post("/admin-login",(req,res)=>{
+
+    const {email,password}=req.body;
+    if(!email.endsWith("@luxuryrental.com")){
+
+    return res.json({
+        message:
+        "Only Luxury Rental Admin Emails Allowed"
+    });
+
+}
+
+    const sql=
+    "SELECT * FROM admins WHERE email=? AND password=?";
+
+    db.query(sql,[email,password],(err,result)=>{
+
+        if(err){
+
+    res.json({
+        message: "Login Failed"
+    });
+
+}
+       else if(result.length > 0){
+
+    res.json({
+        message: "Admin Login Successful"
+    });
+
+}
+else{
+
+    res.json({
+        message: "Invalid Admin Credentials"
+    });
+
+}
+
+    });
+
+});
+
+router.post("/admin-register",(req,res)=>{
+
+    const {email,password} = req.body;
+    if(!email.endsWith("@luxuryrental.com")){
+
+    return res.json({
+        message:
+        "Only Official Luxury Rental Admin Accounts Allowed"
+    });
+
+}
+
+    const checkSql =
+    "SELECT * FROM admins WHERE email=?";
+
+    db.query(
+    checkSql,
+    [email],
+    (err,result)=>{
+
+        if(result.length > 0){
+
+            return res.json({
+                message:
+                "Admin Already Registered"
+            });
+
+        }
+
+        const insertSql =
+        "INSERT INTO admins(email,password) VALUES(?,?)";
+
+        db.query(
+        insertSql,
+        [email,password],
+        (err,result)=>{
+
+            if(err){
+
+                return res.json({
+                    message:
+                    "Registration Failed"
+                });
+
+            }
+
+            res.json({
+                message:
+                "Admin Registered Successfully"
+            });
+
+        });
 
     });
 
