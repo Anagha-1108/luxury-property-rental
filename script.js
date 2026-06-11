@@ -70,6 +70,21 @@ async function bookPropertyForm() {
     let guests =
     document.getElementById("guests").value;
 
+    let amount = 0;
+
+if(property === "Luxury Villa"){
+    amount = 25000;
+}
+else if(property === "Premium Apartment"){
+    amount = 15000;
+}
+else if(property === "Beach Resort"){
+    amount = 20000;
+}
+else if(property === "Luxury Penthouse"){
+    amount = 30000;
+}   
+
     const response = await fetch(
         "http://localhost:5000/booking",
         {
@@ -86,7 +101,8 @@ async function bookPropertyForm() {
                 property,
                 checkin,
                 checkout,
-                guests
+                guests,
+                amount
             })
         }
     );

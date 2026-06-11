@@ -239,80 +239,88 @@ router.post("/booking", (req, res) => {
         property,
         checkin,
         checkout,
-        guests
+        guests,
+        amount
     } = req.body;
 
-    const checkBookingSql = `
-        SELECT *
-        FROM bookings
-        WHERE customer_email = ?
-        AND checkin_date <= ?
-        AND checkout_date >= ?
-    `;
+    const userCheckSql =
+    "SELECT * FROM users WHERE email = ?";
 
-    db.query(
-        checkBookingSql,
-        [
-            customerEmail,
-            checkout,
-            checkin
-        ],
-        (err, result) => {
+    db.query(userCheckSql, [customerEmail], (err, userResult) => {
 
-            if(err){
-                console.log(err);
-                return res.send("Booking Failed");
-            }
+        if(err){
+            return res.send("Booking Failed");
+        }
 
-            if(result.length > 0){
-                return res.send(
-                    "You already have a booking during these dates"
+        if(userResult.length === 0){
+            return res.send(
+                "Please Register or Login Before Booking"
+            );
+        }
+
+        const checkBookingSql = `
+            SELECT *
+            FROM bookings
+            WHERE customer_email = ?
+            AND checkin_date <= ?
+            AND checkout_date >= ?
+        `;
+
+        db.query(
+            checkBookingSql,
+            [customerEmail, checkout, checkin],
+            (err, result) => {
+
+                if(err){
+                    return res.send("Booking Failed");
+                }
+
+                if(result.length > 0){
+                    return res.send(
+                        "You already have a booking during these dates"
+                    );
+                }
+
+                const sql = `
+                    INSERT INTO bookings
+                    (
+                        customer_name,
+                        customer_email,
+                        phone,
+                        property_name,
+                        checkin_date,
+                        checkout_date,
+                        guests,
+                        amount_paid
+                    )
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                `;
+
+                db.query(
+                    sql,
+                    [
+                        customerName,
+                        customerEmail,
+                        phone,
+                        property,
+                        checkin,
+                        checkout,
+                        guests,
+                        amount
+                    ],
+                    (err, result) => {
+
+                        if(err){
+                            return res.send("Booking Failed");
+                        }
+
+                        return res.send("Booking Successful");
+                    }
                 );
             }
-
-            const sql = `
-                INSERT INTO bookings
-                (
-                    customer_name,
-                    customer_email,
-                    phone,
-                    property_name,
-                    checkin_date,
-                    checkout_date,
-                    guests
-                )
-                VALUES (?, ?, ?, ?, ?, ?, ?)
-            `;
-
-            db.query(
-                sql,
-                [
-                    customerName,
-                    customerEmail,
-                    phone,
-                    property,
-                    checkin,
-                    checkout,
-                    guests
-                ],
-                (err, result) => {
-
-                    if(err){
-                        console.log(err);
-                        res.send("Booking Failed");
-                    }
-                    else{
-                        res.send("Booking Successful");
-                    }
-
-                }
-            );
-
-        }
-    );
-
+        );
+    });
 });
-
 router.get("/all-users", (req, res) => {
 
     const sql = `
@@ -343,7 +351,8 @@ router.get("/all-bookings", (req, res) => {
         property_name,
         checkin_date,
         checkout_date,
-        guests
+        guests,
+        amount_paid
         FROM bookings
     `;
 

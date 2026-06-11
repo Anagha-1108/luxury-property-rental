@@ -127,6 +127,7 @@ function logoutAdmin(){
                 <th>Check-In</th>
                 <th>Check-Out</th>
                 <th>Guests</th>
+                <th>Amount Paid</th>
             </tr>
 
         </table>
@@ -204,6 +205,7 @@ fetch("http://localhost:5000/all-bookings")
             </td>
 
             <td>${booking.guests}</td>
+            <td>₹${booking.amount_paid}</td>
         </tr>
         `;
 
